@@ -1,0 +1,133 @@
+@import "tailwindcss";
+
+@theme {
+  --font-unbounded: 'Unbounded', sans-serif;
+  --font-manrope:   'Manrope', sans-serif;
+
+  --color-bg:      #080810;
+  --color-bg2:     #0f0f1a;
+  --color-card:    #13131f;
+  --color-border:  #1c1c2e;
+  --color-border2: #252538;
+  --color-green:   #5dffb0;
+  --color-blue:    #4facfe;
+  --color-purple:  #c084fc;
+  --color-muted:   #5a5a7a;
+  --color-text:    #e8e8f8;
+  --color-text2:   #a0a0c0;
+  --color-tg:      #27A7E7;
+}
+
+/* ── Keyframes ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-8px); }
+}
+@keyframes phoneGlow {
+  0%, 100% { opacity: 0.6; }
+  50%       { opacity: 1; }
+}
+
+/* ── Base reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  background-color: #080810;   /* prevents white flash on load */
+}
+
+body {
+  font-family: 'Manrope', sans-serif;
+  color: #e8e8f8;
+  background-color: #080810;   /* always dark */
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* strip browser defaults from interactive elements */
+button, select, input, textarea {
+  font-family: inherit;
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+/* ── Layout helpers ── */
+.container-lg {
+  width: 100%;
+  max-width: 1160px;
+  margin-left:  auto;
+  margin-right: auto;
+  padding-left:  clamp(1.25rem, 5vw, 2.5rem);
+  padding-right: clamp(1.25rem, 5vw, 2.5rem);
+}
+
+.section {
+  padding-top:    6rem;
+  padding-bottom: 6rem;
+}
+
+/* ── Typography tokens ── */
+.tag {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #5dffb0;
+  padding: 5px 12px;
+  border-radius: 99px;
+  background: rgba(93,255,176,0.07);
+  border: 1px solid rgba(93,255,176,0.15);
+  margin-bottom: 14px;
+}
+
+.heading {
+  font-family: 'Unbounded', sans-serif;
+  font-size: clamp(1.9rem, 3.5vw, 2.9rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  color: #e8e8f8;
+}
+
+.subtext {
+  font-size: 0.95rem;
+  color: #a0a0c0;
+  line-height: 1.75;
+}
+
+/* ── Scrollbar hide ── */
+.phone-screen::-webkit-scrollbar,
+.cat-row::-webkit-scrollbar { display: none; }
+.phone-screen, .cat-row { scrollbar-width: none; }
+
+/* hero 2-col on large screens */
+@media (min-width: 1024px) {
+  .lg\:grid-hero {
+    grid-template-columns: 1fr 260px !important;
+  }
+}
+
+/* ── Responsive grid overrides ── */
+@media (max-width: 767px) {
+  .stats-grid-responsive   { grid-template-columns: repeat(2, 1fr) !important; }
+  .features-grid-responsive { grid-template-columns: 1fr !important; }
+  .steps-grid-responsive   { grid-template-columns: 1fr !important; }
+  .pricing-grid-responsive  { grid-template-columns: 1fr !important; }
+  .form-grid-responsive     { grid-template-columns: 1fr !important; gap: 3rem !important; }
+  .steps-line-hide          { display: none !important; }
+  .feat-wide                { grid-column: auto !important; }
+}
+
+@media (min-width: 768px) {
+  .feat-wide { grid-column: span 2; }
+}
